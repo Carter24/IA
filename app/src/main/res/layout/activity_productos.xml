@@ -14,8 +14,8 @@
             android:id="@+id/Agregar2"
             app:layout_constraintEnd_toStartOf="@+id/Ver"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="96dp" app:layout_constraintHorizontal_bias="0.867"
-            android:layout_marginBottom="144dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="84dp" app:layout_constraintHorizontal_bias="0.867"
+            android:layout_marginBottom="140dp" app:layout_constraintBottom_toBottomOf="parent"
     />
     <EditText
             android:layout_width="wrap_content"

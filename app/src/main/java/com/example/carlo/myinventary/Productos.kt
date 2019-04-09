@@ -44,8 +44,8 @@ class Productos : AppCompatActivity() {
         }
         btnlista.setOnClickListener {
             val intent = Intent(this, ListadoProductos::class.java)
-            val inten2 = Intent(this,AdapterProducto::class.java)
-            inten2.putExtra("idInventario", idInventario)
+            val intent2 = Intent(this,AdapterProducto::class.java)
+            intent2.putExtra("idInventario", idInventario)
             intent.putExtra("idInventario", idInventario)
             startActivity(intent)
         }

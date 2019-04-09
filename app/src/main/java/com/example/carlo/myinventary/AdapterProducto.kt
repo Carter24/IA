@@ -3,7 +3,6 @@ package com.example.carlo.myinventary
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
 
 class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:List<ProductosConstructor>)
     : ArrayAdapter<ProductosConstructor>(ctx,layoutId,listaProducto){
@@ -22,16 +20,18 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
         val view: View = layoutInflater.inflate(layoutId,null)
 
         val nombre = view.findViewById<TextView>(R.id.NombreProducto2)
-        val fechaEntrada = view.findViewById<TextView>(R.id.FechaEntrada2)
-        val cantidad = view.findViewById<TextView>(R.id.Cantidad2)
+        val idInventario = view.findViewById<TextView>(R.id.IdInventario)
+        val fechaEntrada = view.findViewById<TextView>(R.id.Fecha)
+        val cantidad = view.findViewById<TextView>(R.id.cantidad)
 
         val actualizar = view.findViewById<TextView>(R.id.Actualizar2)
         val borrar = view.findViewById<TextView>(R.id.Eliminar2)
         val producto = listaProducto[position]
 
+        idInventario.text = producto.idInventario
         nombre.text = producto.nombre
-        fechaEntrada.text = producto.FechaEntrada
-        cantidad.text = producto.Cantidad
+        fechaEntrada.text = producto.fechaEntrada
+        cantidad.text = producto.cantidad
 
         actualizar.setOnClickListener {
             Actualizar(producto)
@@ -50,10 +50,16 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
         val inflater = LayoutInflater.from(ctx)
         val view = inflater.inflate(R.layout.actualizar_producto,null)
 
-
         val nombre = view.findViewById<TextView>(R.id.upNombreProducto)
+        val fechaEntrada = view.findViewById<TextView>(R.id.upFechaEntrada)
+        val cantidad  = view.findViewById<TextView>(R.id.upCantidad)
 
         nombre.setText(producto.nombre)
+        fechaEntrada.setText(producto.fechaEntrada)
+        cantidad.setText(producto.cantidad)
+
+        fechaEntrada.isEnabled = false
+        cantidad.isEnabled = false
 
         builder.setView(view)
 
@@ -63,6 +69,9 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
                 val  base = FirebaseDatabase.getInstance().getReference("Productos")
 
                 val Nombre    = nombre.text.toString().trim()
+                val IdInventario = producto.idInventario.trim()
+                val FechaEntrada = producto.fechaEntrada.trim()
+                val Cantidad = producto.cantidad.trim()
 
                 if (Nombre.isEmpty()){
                     nombre.error = "Ingrese el Nombre del Producto "
@@ -70,7 +79,7 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
                 }
                 else
                 {
-                    val producto = ProductosConstructorActualizar(producto.id,Nombre)
+                    val producto = ProductosConstructor(producto.id,IdInventario,Nombre,FechaEntrada,Cantidad)
                     base.child(producto.id).setValue(producto)
                     Toast.makeText(ctx,"Actualizado", Toast.LENGTH_LONG).show()
                 }

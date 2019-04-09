@@ -3,6 +3,7 @@ package com.example.carlo.myinventary
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 
 class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:List<ProductosConstructor>)
     : ArrayAdapter<ProductosConstructor>(ctx,layoutId,listaProducto){
@@ -47,6 +49,7 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
         builder.setTitle("Actualizar")
         val inflater = LayoutInflater.from(ctx)
         val view = inflater.inflate(R.layout.actualizar_producto,null)
+
 
         val nombre = view.findViewById<TextView>(R.id.upNombreProducto)
 

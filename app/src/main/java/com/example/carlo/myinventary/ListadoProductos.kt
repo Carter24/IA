@@ -27,10 +27,10 @@ class ListadoProductos : AppCompatActivity() {
 
         listaProducto = mutableListOf()
         listView = findViewById(R.id.ListaProductos)
-        Base = query as DatabaseReference
-        query = FirebaseDatabase.getInstance().getReference("Productos").orderByChild("id").equalTo(idInventario.toString())
+        Base = FirebaseDatabase.getInstance().getReference("Productos")
+        query = FirebaseDatabase.getInstance().getReference("Productos").orderByChild("idInventario").equalTo(idInventario.toString())
 
-        Base.addValueEventListener(object : ValueEventListener {
+            query.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
             override fun onDataChange(p0: DataSnapshot) {
@@ -46,6 +46,9 @@ class ListadoProductos : AppCompatActivity() {
                 listView.adapter = adaptador
             }
         })
-
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

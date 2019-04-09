@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_productos.*
-import kotlinx.android.synthetic.main.actualizar_producto.*
 
 class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:List<ProductosConstructor>)
     : ArrayAdapter<ProductosConstructor>(ctx,layoutId,listaProducto){
@@ -22,12 +20,16 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
         val view: View = layoutInflater.inflate(layoutId,null)
 
         val nombre = view.findViewById<TextView>(R.id.NombreProducto2)
+        val fechaEntrada = view.findViewById<TextView>(R.id.FechaEntrada2)
+        val cantidad = view.findViewById<TextView>(R.id.Cantidad2)
 
         val actualizar = view.findViewById<TextView>(R.id.Actualizar2)
         val borrar = view.findViewById<TextView>(R.id.Eliminar2)
         val producto = listaProducto[position]
 
         nombre.text = producto.nombre
+        fechaEntrada.text = producto.FechaEntrada
+        cantidad.text = producto.Cantidad
 
         actualizar.setOnClickListener {
             Actualizar(producto)
@@ -36,7 +38,6 @@ class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:Lis
         borrar.setOnClickListener {
             Borrar(producto)
         }
-
         return view
     }
 

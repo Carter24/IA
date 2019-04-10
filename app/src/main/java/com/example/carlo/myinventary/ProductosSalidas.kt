@@ -41,6 +41,9 @@ class ProductosSalidas : AppCompatActivity() {
 
         btnAgregar.setOnClickListener {
             guardar()
+            producto.text.clear()
+            salida.text.clear()
+            cantidad.text.clear()
         }
         btnlista.setOnClickListener {
             val intent = Intent(this, ListadoProductos::class.java)

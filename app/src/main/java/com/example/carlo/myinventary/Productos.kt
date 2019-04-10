@@ -28,7 +28,7 @@ class Productos : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val actionBar = supportActionBar
-        actionBar!!.title = "My Inventary"
+        actionBar!!.title = "Inventarios"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         idInventario = intent.getStringExtra("id")
@@ -46,6 +46,9 @@ class Productos : AppCompatActivity() {
 
         btnAgregar.setOnClickListener {
             guardar()
+            producto.text.clear()
+            entrada.text.clear()
+            cantidad.text.clear()
         }
         btnlista.setOnClickListener {
             val intent = Intent(this, ListadoProductos::class.java)

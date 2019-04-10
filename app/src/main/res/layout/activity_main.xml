@@ -16,7 +16,10 @@
             app:layout_constraintEnd_toStartOf="@+id/Ver"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.843"
-            android:layout_marginBottom="204dp" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginBottom="204dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            style="@style/Widget.AppCompat.Button.Small" app:layout_constraintCircleRadius="64dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +48,9 @@
             android:id="@+id/Ver"
             android:layout_marginBottom="204dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="80dp"/>
+            android:layout_marginEnd="80dp" android:background="@color/colorPrimary"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
     <ImageView
             android:layout_width="324dp"
             android:layout_height="222dp" app:srcCompat="@drawable/logo"

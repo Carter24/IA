@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+        val actionBar = supportActionBar
+        actionBar!!.title = "Login"
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         Inventario    = findViewById(R.id.editText)
         Descripcion   = findViewById(R.id.editText2)
 
@@ -30,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         btnAgregar.setOnClickListener {
             guardar()
+            Inventario.text.clear()
+            Descripcion.text.clear()
         }
 
         btnlista.setOnClickListener {
@@ -37,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     private fun guardar(){
         val nombreInventario    = Inventario.text.toString().trim()
         val descripcion  = Descripcion.text.toString().trim()
@@ -60,5 +67,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Has Agregado Un Inventario", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

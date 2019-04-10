@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val actionBar = supportActionBar
-        actionBar!!.title = "My Inventary"
-        actionBar.setDisplayHomeAsUpEnabled(true)
-
         Inventario    = findViewById(R.id.editText)
         Descripcion   = findViewById(R.id.editText2)
 

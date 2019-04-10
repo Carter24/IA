@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ListadoProductos">
         </activity>
+        <activity android:name=".ProductosSalidas">
+        </activity>
     </application>
 
 </manifest>

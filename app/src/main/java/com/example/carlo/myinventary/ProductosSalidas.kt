@@ -8,23 +8,21 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
 
-class Productos : AppCompatActivity() {
+class ProductosSalidas : AppCompatActivity() {
 
     lateinit var idInventario:String
     lateinit var producto : EditText
-    lateinit var entrada : EditText
+    lateinit var salida: EditText
     lateinit var cantidad : EditText
     lateinit var btnAgregar : Button
     lateinit var btnlista : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_productos)
-
+        setContentView(R.layout.activity_productos_salidas)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val actionBar = supportActionBar
@@ -34,15 +32,12 @@ class Productos : AppCompatActivity() {
         idInventario = intent.getStringExtra("id")
         Toast.makeText(this, "$idInventario", Toast.LENGTH_LONG).show()
 
-        val intent2 = Intent(this,ProductosSalidas::class.java)
-        intent2.putExtra("id",idInventario)
+        producto    = findViewById(R.id.NombreProductoSalida)
+        salida  = findViewById(R.id.FechaSalida)
+        cantidad   = findViewById(R.id.CantidadSalida)
 
-        producto    = findViewById(R.id.NombreProductoEntrada)
-        entrada  = findViewById(R.id.FechaEntrada)
-        cantidad   = findViewById(R.id.CantidadEntrada)
-
-        btnAgregar = findViewById(R.id.AgregarEntrada)
-        btnlista = findViewById(R.id.VerEntrada)
+        btnAgregar = findViewById(R.id.AgregarSalida)
+        btnlista = findViewById(R.id.VerSalida)
 
         btnAgregar.setOnClickListener {
             guardar()
@@ -55,7 +50,7 @@ class Productos : AppCompatActivity() {
     }
     private fun guardar(){
         val nombreProducto    = producto.text.toString().trim()
-        val fechaEntrada  = entrada.text.toString().trim()
+        val fechaSalida  = salida.text.toString().trim()
         val Cantidad  = cantidad.text.toString().trim()
         val idInventario = intent.getStringExtra("id")
 
@@ -63,8 +58,8 @@ class Productos : AppCompatActivity() {
             producto.error = "Ingrese el dato de forma correcta"
             return
         }
-        if (fechaEntrada.isEmpty()){
-            entrada.error = "Ingrese el dato de forma correcta"
+        if (fechaSalida.isEmpty()){
+            salida.error = "Ingrese el dato de forma correcta"
             return
         }
         if (Cantidad.isEmpty()){
@@ -73,14 +68,14 @@ class Productos : AppCompatActivity() {
         }
         else
         {
-            val Base = FirebaseDatabase.getInstance().getReference("Productos")
+            val Base = FirebaseDatabase.getInstance().getReference("ProductosSalidas")
             val id = Base.push().key
-            val producto = ProductosConstructor(id!!,idInventario, nombreProducto, fechaEntrada, Cantidad)
+            val producto = ProductosConstructor(id!!,idInventario, nombreProducto, fechaSalida, Cantidad)
 
             if (id != null)
             {
                 Base.child(id).setValue(producto).addOnCanceledListener {
-                    Toast.makeText(this, "Ha Entrado Un Producto", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Ha Salido Un Producto", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -115,4 +110,3 @@ class Productos : AppCompatActivity() {
         }
     }
 }
-

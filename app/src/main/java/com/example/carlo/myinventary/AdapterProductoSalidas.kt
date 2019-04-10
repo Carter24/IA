@@ -11,23 +11,23 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
 
-class AdapterProducto(val ctx : Context, val layoutId:Int, val listaProducto:List<ProductosConstructor>)
-    : ArrayAdapter<ProductosConstructor>(ctx,layoutId,listaProducto){
+class AdapterProductoSalidas(val ctx : Context, val layoutId:Int, val listaProducto:List<ProductosSalidasConstructor>)
+    : ArrayAdapter<ProductosSalidasConstructor>(ctx,layoutId,listaProducto){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val layoutInflater : LayoutInflater = LayoutInflater.from(ctx)
         val view: View = layoutInflater.inflate(layoutId,null)
 
-        val nombre = view.findViewById<TextView>(R.id.NombreProductoEntrada2)
-        val idInventario = view.findViewById<TextView>(R.id.IdInventarioEntrada)
-        val fechaEntrada = view.findViewById<TextView>(R.id.FechaEntrada2)
-        val cantidad = view.findViewById<TextView>(R.id.CantidadEntrada2)
+        val nombre = view.findViewById<TextView>(R.id.NombreProductoSalida2)
+        val idInventario = view.findViewById<TextView>(R.id.IdInventarioSalida)
+        val fechaSalida = view.findViewById<TextView>(R.id.FechaSalida2)
+        val cantidad = view.findViewById<TextView>(R.id.CantidadSalida2)
         val producto = listaProducto[position]
 
         idInventario.text = producto.idInventario
         nombre.text = producto.nombre
-        fechaEntrada.text = producto.fechaEntrada
+        fechaSalida.text = producto.fechaEntrada
         cantidad.text = producto.cantidad
 
         return view

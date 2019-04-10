@@ -42,6 +42,14 @@ class Adapter(val ctx : Context, val layoutId:Int, val listaInventario:List<Inve
                 ).putExtra("id", id.text.toString())
             )
         })
+        btn.setOnClickListener(View.OnClickListener { v ->
+            v.context.startActivity(
+                Intent(
+                    (v.context),
+                    (ProductosSalidas::class.java)
+                ).putExtra("id", id.text.toString())
+            )
+        })
 
         nombre.text = inventario.nombre
         descripcion.text = inventario.descripcion
